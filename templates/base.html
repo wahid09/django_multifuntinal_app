@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{%block title_block%}Blogs{% endblock %}</title>
 </head>
 <body>
@@ -13,11 +14,14 @@
           <a class="nav-link" href="{% url 'index' %}">Home</a>
       </li>
       {% if user.is_authenticated %}
-      <li class="nav-item">
-          <a class="nav-link" href="{% url 'App_Login:logout' %}">Logout</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="{% url 'App_Login:profile' %}">Profile</a>
+       <li class="nav-item dropdown pul-right">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i>{{ user.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'App_Login:profile' %}"><i class="fa fa-users" aria-hidden="true"></i></i>Profile</a>
+            <a class="dropdown-item" href="{% url 'App_Login:logout' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>Logout</a>
+        </div>
       </li>
       {% else %}
       <li class="nav-item">
